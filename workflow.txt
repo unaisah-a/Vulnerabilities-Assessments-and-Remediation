@@ -1,0 +1,88 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText",
+        "responseText": "={{$json.text}}"
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        256,
+        288
+      ],
+      "id": "cff34d65-004d-40da-bb65-a10605809ba4",
+      "name": "Form1",
+      "webhookId": "cd8ee917-51fd-454a-ac58-3a7dadb97c01"
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "file",
+        "destinationKey": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        48,
+        288
+      ],
+      "id": "43af90e6-2f88-4c7b-8150-7cfcc046af6b",
+      "name": "Extract from File1"
+    },
+    {
+      "parameters": {
+        "formTitle": "CVE-Test",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "file",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -160,
+        288
+      ],
+      "id": "97faa8c2-f77c-4015-a82a-ec15c534c1d5",
+      "name": "On form submission1",
+      "webhookId": "ebdb66d2-60d2-46f0-815a-b31ab5f9690f"
+    }
+  ],
+  "connections": {
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "Form1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission1": {
+      "main": [
+        [
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "efc30163ba301c8ebdcb7d13dda8923161a85a2c2be4542d3634663de8d625f4"
+  }
+}
